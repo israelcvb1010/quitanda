@@ -1,40 +1,40 @@
 from django.db import models
 
 class Categories(models.Model):
-    name = models.CharField(max_length=64, null=False, blank=True)
+    name = models.CharField(max_length=64, null=False, blank=True, unique=True)
     additional = models.TextField(null=True, blank=True)
 
 
 class Suppliers(models.Model):
-    name = models.CharField(max_length=64, null=False, blank=False)
-    cnpj = models.CharField(max_length=14, null=False, blank=False)
+    name = models.CharField(max_length=64, null=False, blank=False, unique=True)
+    cnpj = models.CharField(max_length=14, null=False, blank=False, unique=True)
     phone = models.CharField(max_length=32, null=True, blank=True)
     email = models.CharField(max_length=64, null=True, blank=True)
     additional = models.TextField(null=True, blank=True)
 
 
 class Manufactorers(models.Model):
-    name = models.CharField(max_length=64, null=False, blank=True)    
-    cnpj = models.CharField(max_length=14, null=False, blank=False)
+    name = models.CharField(max_length=64, null=False, blank=True, unique=True)
+    cnpj = models.CharField(max_length=14, null=False, blank=False, unique=True)
     phone = models.CharField(max_length=32, null=True, blank=True)
     email = models.CharField(max_length=64, null=True, blank=True)
     additional = models.TextField(null=True, blank=True)
 
 
 class Brands(models.Model):
-    name = models.CharField(max_length=64, null=False, blank=False)
+    name = models.CharField(max_length=64, null=False, blank=False, unique=True)
     additional = models.TextField(null=True, blank=True)
 
 
 class UnityMeasures(models.Model):
-    name = models.CharField(max_length=16, null=False, blank=False)
-    abbreviation = models.CharField(max_length=3, null=False, blank=False)
+    name = models.CharField(max_length=16, null=False, blank=False, unique=True)
+    abbreviation = models.CharField(max_length=3, null=False, blank=False, unique=True)
     additional = models.TextField(null=True, blank=True)
 
 
 class Products(models.Model):
-    barcode = models.CharField(max_length=64, null=False, blank=False)
-    name = models.CharField(max_length=64, null=False, blank=False)
+    barcode = models.CharField(max_length=64, null=False, blank=False, unique=True)
+    name = models.CharField(max_length=64, null=False, blank=False, unique=True)
     description = models.TextField(null=True, blank=True)
     category = models.ForeignKey('Categories', on_delete=models.CASCADE, null=True, blank=True)
     brand = models.ForeignKey('Brands', on_delete=models.CASCADE, null=True, blank=True)
